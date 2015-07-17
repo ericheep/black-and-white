@@ -14,15 +14,16 @@ int[][] solo1;
 int[][] solo2;
 int[][] solo3;
 
-
 void setup() {
-  size(1000, 600);
+  size(int(displayWidth * 12.8), displayHeight);
   colorMode(HSB, 360);
-  grid();
+  background(0, 100, 360);
+  //grid();
 
-  noStroke();
+  strokeWeight(1);
+  stroke(0, 0, 90);
   int size = 0;
-  int pages = 60;
+  int pages = 64;
 
   u = new Unison();
   g1 = new Group1();
@@ -54,56 +55,77 @@ void setup() {
     for (int j = 0; j < max_length (i); j++) {
       if (unison[i] != null) {
         if (unison[i][j] != 0) {
-          fill(rect_color(unison[i][j]));
-          rect(rectangle_width * position, 0, rectangle_width, height);
-        }
-      }
-      if (solo1[i] != null) {
-        if (solo1[i][j] != 0) {
-          fill(rect_color(solo1[i][j]));
-          rect(rectangle_width * position, height/5.0 * 2, rectangle_width, height/5.0);
-        }
-      }
-      if (solo2[i] != null) {
-        if (solo2[i][j] != 0) {
-          fill(rect_color(solo2[i][j]));
-          rect(rectangle_width * position, 0, rectangle_width, height/5.0);
-        }
-      }
-      if (solo3[i] != null) {
-        if (solo3[i][j] != 0) {
-          fill(rect_color(solo3[i][j]));
-          rect(rectangle_width * position, height/5.0 * 4, rectangle_width, height/5.0);
+          if (unison[i][j] != 10) {
+            fill(rect_color(unison[i][j]));
+            rect(rectangle_width * position, 0, rectangle_width, height);
+          } else {
+          }
         }
       }
       if (group1[i] != null) {
         if (group1[i][j] != 0) {
-          fill(rect_color(group1[i][j]));
-          rect(rectangle_width * position, height/3.0 * 1, rectangle_width, height/3.0);
+          if (group1[i][j] != 10) {
+            fill(rect_color(group1[i][j]));
+            rect(rectangle_width * position, height/3.0 * 1, rectangle_width, height/3.0);
+          } else {
+          }
         }
       }
       if (group2[i] != null) {
         if (group2[i][j] != 0) {
-          fill(rect_color(group2[i][j]));
-          rect(rectangle_width * position, 0, rectangle_width, height/3.0);
+          if (group2[i][j] != 10) {
+            fill(rect_color(group2[i][j]));
+            rect(rectangle_width * position, 0, rectangle_width, height/3.0);
+          } else {
+
+          }
         }
       }
       if (group3[i] != null) {
         if (group3[i][j] != 0) {
-          fill(rect_color(group3[i][j]));
-          rect(rectangle_width * position, height/3.0 * 2, rectangle_width, height/3.0);
+          if (group3[i][j] != 10) {
+            fill(rect_color(group3[i][j]));
+            rect(rectangle_width * position, height/3.0 * 2, rectangle_width, height/3.0);
+          } else {
+
+          }
+        }
+      }
+      if (solo1[i] != null) {
+        if (solo1[i][j] != 0) {
+          if (solo1[i][j] != 10) {
+            fill(rect_color(solo1[i][j]));
+            rect(rectangle_width * position, height/2.0 - (height/6.0)/2.0, rectangle_width, height/6.0);
+          }
+        }
+      }
+      if (solo2[i] != null) {
+        if (solo2[i][j] != 0) {
+          if (solo2[i][j] != 10) {
+            fill(rect_color(solo2[i][j]));
+            rect(rectangle_width * position, height/6.0 - (height/6.0)/2.0, rectangle_width, height/6.0);
+          }
+        }
+      }
+      if (solo3[i] != null) {
+        if (solo3[i][j] != 0) {
+          if (solo3[i][j] != 10) {
+            fill(rect_color(solo3[i][j]));
+            rect(rectangle_width * position, height/6.0 * 5 - (height/6.0)/2.0, rectangle_width, height/6.0);
+          }
         }
       }
       position++;
     }
   }
+  save("b&w.png");
 }
 
 void grid() {
   int position = 0;
 
-  int height_spacing = height/4;
-  int width_spacing = width/4;
+  int height_spacing = height/6;
+  int width_spacing = width/6;
 
   float height_distance = height/float(height_spacing);
   float width_distance = width/float(width_spacing);
@@ -133,6 +155,30 @@ color rect_color(int c) {
   else if (c == 4) {
     return color(0, 360, 360);
   } 
+  // green
+  else if (c == 5) {
+    return color(120, 360, 360);
+  } 
+  // yellow
+  else if (c == 6) {
+    return color(60, 360, 360);
+  } 
+  // gray
+  else if (c == 7) {
+    return color(0, 0, 180);
+  } 
+  // orange
+  else if (c == 8) {
+    return color(20, 360, 360);
+  } 
+  // purple
+  else if (c == 9) {
+    return color(300, 360, 360);
+  } 
+  // &
+  else if (c == 10) {
+    return color(0, 0, 0, 0);
+  }
   // no color
   else {
     return color(0, 0, 0);
@@ -144,15 +190,6 @@ int max_length(int idx) {
   if (unison[idx] != null) {
     max = unison[idx].length;
   }
-  if (group1[idx] != null) {
-    max = group1[idx].length;
-  }
-  if (group2[idx] != null) {
-    max = group2[idx].length;
-  }
-  if (group3[idx] != null) {
-    max = group3[idx].length;
-  }
   if (solo1[idx] != null) {
     max = solo1[idx].length;
   }
@@ -161,6 +198,15 @@ int max_length(int idx) {
   }
   if (solo3[idx] != null) {
     max = solo3[idx].length;
+  }
+  if (group1[idx] != null) {
+    max = group1[idx].length;
+  }
+  if (group2[idx] != null) {
+    max = group2[idx].length;
+  }
+  if (group3[idx] != null) {
+    max = group3[idx].length;
   }
   return max;
 }
