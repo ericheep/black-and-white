@@ -15,10 +15,10 @@ int[][] solo2;
 int[][] solo3;
 
 void setup() {
-  size(int(displayWidth * 12.8), displayHeight);
+  size(15000, 900);
+  //surface.setSize(int(displayWidth * 12.8), displayHeight);
   colorMode(HSB, 360);
-  background(0, 100, 360);
-  //grid();
+  background(0, 0, 100);
 
   strokeWeight(1);
   stroke(0, 0, 90);
@@ -210,4 +210,3 @@ int max_length(int idx) {
   }
   return max;
 }
-
